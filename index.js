@@ -21,7 +21,7 @@ client.on('ready', async () => {
   const getPresence = () => ({
     name: "Visual Studio Code",
     type: "PLAYING",
-    details: "Editing ticket.py",
+    details: "Editing ekonomia.py",
     state: "Workspace: bot pod rp",
     timestamps: { start: Date.now() },
     // Użycie ID oficjalnej aplikacji VS Code rozwiązuje problem INVALID_URL
