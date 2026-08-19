@@ -17,11 +17,13 @@ client.on('ready', async () => {
     state: "Workspace: bot pod rp",
     timestamps: { start: Date.now() },
     assets: {
-      // Oficjalne grafiki VS Code z Discorda:
-      large_image: "mp:app-assets/383226320970055681/565945770067623946.png", // Grafika Python / VS Code
+      // Link do zewnętrznego logo Pythona (duże)
+      large_image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png",
       large_text: "Python",
-      small_image: "mp:app-assets/383226320970055681/565945770067623946.png", // Ikona VS Code
-      small_text: "Visual Studio Code"
+      
+      // Link do zewnętrznego logo VS Code (małe)
+      small_image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png",
+      small_text: "Visual Studio Code" // <-- To pojawi się w chmurce po najechaniu!
     }
   });
 
@@ -30,9 +32,8 @@ client.on('ready', async () => {
     status: 'online'
   });
 
-  // Automatyczne wyłącznie po 2 godzinach
   setTimeout(() => {
-    console.log("Minęły 2 godziny. Wyłączam...");
+    console.log("Minęły 2 godziny. Wyłączam bota...");
     client.destroy();
     process.exit(0);
   }, 2 * 60 * 60 * 1000);
