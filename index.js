@@ -13,8 +13,8 @@ client.on('ready', async () => {
   const getPresence = () => ({
     name: "Visual Studio Code",
     type: "PLAYING",
-    details: "Editing index.js",
-    state: "Workspace: main",
+    details: "Editing ticket.py",
+    state: "Workspace: bot pod rp",
     timestamps: { start: Date.now() },
     assets: {
       large_image: "vscode", 
