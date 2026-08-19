@@ -7,13 +7,12 @@ const app = express();
 app.get('/', (req, res) => res.send('Bot działa!'));
 app.listen(process.env.PORT || 3000);
 
-// OBSŁUGA BŁĘDÓW (zapobiega wywalaniu aplikacji na Renderze)
 client.on('error', (err) => {
   console.error('Wystąpił błąd klienta Discorda:', err.message);
 });
 
-process.on('unhandledRejection', (reason, promise) => {
-  console.error('Niewychwycony błąd (Unhandled Rejection):', reason);
+process.on('unhandledRejection', (reason) => {
+  console.error('Niewychwycony błąd:', reason);
 });
 
 client.on('ready', async () => {
@@ -25,11 +24,13 @@ client.on('ready', async () => {
     details: "Editing ticket.py",
     state: "Workspace: bot pod rp",
     timestamps: { start: Date.now() },
+    // Użycie ID oficjalnej aplikacji VS Code rozwiązuje problem INVALID_URL
+    applicationId: "383226320970055681", 
     assets: {
-      large_image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png",
+      large_image: "python",               // Domyślny asset dla Pythona w VS Code
       large_text: "Python",
-      small_image: "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/visual-studio-code/visual-studio-code.png",
-      small_text: "Visual Studio Code"
+      small_image: "vscode",               // Domyślny asset dla logo VS Code
+      small_text: "Visual Studio Code"     // Napis w chmurce po najechaniu!
     }
   });
 
@@ -45,7 +46,6 @@ client.on('ready', async () => {
   }, 2 * 60 * 60 * 1000);
 });
 
-// Logowanie z weryfikacją obecności tokena
 if (!process.env.DISCORD_TOKEN) {
   console.error("BŁĄD: Brak zmiennej DISCORD_TOKEN w Environment Variables!");
 } else {
