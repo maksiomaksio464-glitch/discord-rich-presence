@@ -4,7 +4,6 @@ const express = require('express');
 const client = new Client();
 const app = express();
 
-// Prosty serwer HTTP, żeby Render nie wyłączał aplikacji
 app.get('/', (req, res) => res.send('Bot działa!'));
 app.listen(process.env.PORT || 3000);
 
@@ -27,6 +26,13 @@ client.on('ready', async () => {
     activities: [getPresence()],
     status: 'online'
   });
+
+  // TUTAJ ZMIANA: Wyłącz bota i status automatycznie po 2 godzinach
+  setTimeout(() => {
+    console.log("Minęły 2 godziny. Wyłączam bota...");
+    client.destroy(); // Rozłącza z Discordem
+    process.exit(0);  // Zamyka skrypt
+  }, 2 * 60 * 60 * 1000); // 2 godziny w milisekundach
 });
 
 client.login(process.env.DISCORD_TOKEN);
